@@ -977,7 +977,7 @@ makeCard 'Ghost Ship', attack, {
           putBack = opp.ai.choose('putOnDeck', state, choices)
           state.log("...#{opp.ai} puts #{putBack} on top of the deck.")
           transferCardToTop(putBack, opp.hand, opp.draw)
-      if opp.ai.goingGreen == 0
+      if opp.ai.goingGreen(state) == 0
         while opp.hand.length > 3
           # COPYPASTAING CODE IS A SIN
           # DO AS I SAY
