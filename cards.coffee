@@ -957,15 +957,43 @@ makeCard 'Ghost Ship', attack, {
   cards: +2
   playEffect: (state) ->
     state.attackOpponents (opp) ->
-      while opp.hand.length > 3
-        # Choosing cards one at a time does not necessarily lead to the
-        # best decision. However, it leads to a reasonable, quick decision when
-        # there could be a very large number of nearly-identical options
-        # to evaluate, which is good for a simulator.
-        choices = opp.hand
-        putBack = opp.ai.choose('putOnDeck', state, choices)
-        state.log("...#{opp.ai} puts #{putBack} on top of the deck.")
-        transferCardToTop(putBack, opp.hand, opp.draw)
+      if opp.hand.length > 5
+        while opp.hand.length > 5
+          # Choosing cards one at a time does not necessarily lead to the
+          # best decision. However, it leads to a reasonable, quick decision when
+          # there could be a very large number of nearly-identical options
+          # to evaluate, which is good for a simulator.
+          choices = opp.hand
+          putBack = opp.ai.choose('putOnDeck', state, choices)
+          state.log("...#{opp.ai} puts #{putBack} on top of the deck.")
+          transferCardToTop(putBack, opp.hand, opp.draw)
+      if opp.ai.pessimisticCoinsInHand >= 8
+        while opp.hand.length > 3
+          # COPYPASTAING CODE IS A SIN
+          # DO AS I SAY
+          # NOT AS I DO
+          # RAAAA
+          choices = opp.hand
+          putBack = opp.ai.choose('putOnDeck', state, choices)
+          state.log("...#{opp.ai} puts #{putBack} on top of the deck.")
+          transferCardToTop(putBack, opp.hand, opp.draw)
+      if opp.ai.goingGreen == 0
+        while opp.hand.length > 3
+          # COPYPASTAING CODE IS A SIN
+          # DO AS I SAY
+          # NOT AS I DO
+          # RAAAA
+          choices = opp.hand
+          putBack = opp.ai.choose('putOnDeck', state, choices)
+          state.log("...#{opp.ai} puts #{putBack} on top of the deck.")
+          transferCardToTop(putBack, opp.hand, opp.draw)        
+      if opp.hand.length > 3
+        while opp.hand.length > 3
+          choices = opp.hand
+          putBack = opp.ai.choose('hideOnDeck', state, choices)
+          state.log("...#{opp.ai} puts #{putBack} on top of the deck carefully.")
+          
+        
 }
 
 # Goons: *see Militia*
