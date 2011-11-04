@@ -569,7 +569,12 @@ class BasicAI
       return card.cards + card.coins + card.cost + 2*card.isAttack
     else
       return card.coins + card.cost + 2*card.isAttack
-
+  hideOnDeckValue: (state, card, my) ->
+    #store up for a big buy next turn
+    if not (card.isAction) and not (card.isTreasure)
+      return -1
+    else
+      return card.cost
   # Changed Priorities for putting cards back on deck.  Only works well for putting back 1 card, and for 1 buy.
   #
   putOnDeckPriority: (state, my) -> 
